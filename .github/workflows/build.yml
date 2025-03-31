@@ -1,0 +1,26 @@
+name: Build Kivy APK
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodni yuklash
+        uses: actions/checkout@v2
+
+      - name: Buildozer va bog‘liqliklarni o‘rnatish
+        run: |
+          sudo apt update && sudo apt install -y zip unzip openjdk-17-jdk
+          pip install --upgrade pip
+          pip install cython buildozer
+
+      - name: APK yaratish
+        run: |
+          buildozer -v android debug
+
+      - name: APK ni yuklab olish
+        uses: actions/upload-artifact@v2
+        with:
+          name: MyKivyApp
+          path: bin/*.apk
