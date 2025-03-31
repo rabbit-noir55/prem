@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Kodni yuklash
-        uses: actions/checkout@v2
+        uses: actions/upload-artifact@v3
+
 
       - name: Buildozer va bog‘liqliklarni o‘rnatish
         run: |
